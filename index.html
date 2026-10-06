@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f2d4d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="V91 Fragrance"><title>V91.fragranceOrd</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:99;padding:16px}.dg{background:var(--c);color:var(--t);border-radius:12px;padding:18px;max-width:420px;width:100%}.dg p{margin:0 0 12px}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f5f8;--c:#fff;--t:#1b2336;--m:#6b7488;--a:#1f2d4d;--g:#b8923f;--b:#dfe3ec}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1524;--c:#18203a;--t:#eef0f6;--m:#9aa3b8;--a:#2c3f6e;--g:#d4ad5a;--b:#2b3556}}
+:root[data-theme="dark"]{--bg:#0f1524;--c:#18203a;--t:#eef0f6;--m:#9aa3b8;--a:#2c3f6e;--g:#d4ad5a;--b:#2b3556}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--t);font:14px/1.5 system-ui,-apple-system,sans-serif}
+header{background:var(--a);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+header h1{margin:0;font:600 19px Georgia,serif;color:#fff}header h1 span{color:var(--g)}header small{opacity:.7;display:block;font-size:11px}
+#sy{font-size:11px;padding:4px 10px;border-radius:12px;background:rgba(255,255,255,.14);color:#fff;border:0}
+nav{display:flex;overflow-x:auto;background:var(--c);border-bottom:1px solid var(--b);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+nav button{flex:1;white-space:nowrap;padding:11px 12px;border:0;border-bottom:3px solid transparent;background:none;color:var(--m);font:inherit;font-weight:600}
+nav button.on{color:var(--a);border-color:var(--g)}@media (prefers-color-scheme:dark){nav button.on{color:var(--g)}}
+main{max-width:820px;margin:0 auto;padding:12px}
+.card{background:var(--c);border:1px solid var(--b);border-radius:12px;padding:14px;margin-bottom:12px}
+h2{font:600 16px Georgia,serif;margin:0 0 10px}h3{font-size:13px;margin:10px 0 4px;color:var(--m)}
+input,select,textarea{width:100%;padding:9px;border:1px solid var(--b);border-radius:8px;background:var(--bg);color:var(--t);font:inherit;margin-bottom:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap}.row>*{flex:1;min-width:120px}
+.btn{display:inline-block;padding:8px 13px;border:0;border-radius:8px;background:var(--a);color:#fff;font:inherit;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;margin:0 6px 6px 0}
+.btn.g{background:var(--g);color:#1b2336}.btn.o{background:none;color:var(--a);border:1px solid var(--a)}@media (prefers-color-scheme:dark){.btn.o{color:var(--g);border-color:var(--g)}}
+.btn:disabled{opacity:.5}
+.it{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-top:1px solid var(--b)}.it b{font-size:14px}
+.m{color:var(--m);font-size:12px}.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:10px;background:var(--bg);border:1px solid var(--b);margin:3px 4px 0 0}
+.tag.k{background:var(--g);color:#1b2336;border-color:var(--g)}
+.chk{display:inline-flex;align-items:center;gap:4px;margin:0 10px 6px 0;font-size:13px}.chk input{width:auto;margin:0}
+.out{white-space:pre-wrap;margin-top:8px}.hide{display:none}
+.msg{padding:9px 12px;border-radius:10px;margin:6px 0;white-space:pre-wrap}.u{background:var(--a);color:#fff;margin-left:15%}.a{background:var(--bg);border:1px solid var(--b)}
+.chips button{font-size:12px;padding:5px 10px;border:1px solid var(--b);background:var(--bg);color:var(--t);border-radius:14px;margin:0 6px 6px 0}
+.tbl{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center;padding:6px 0;border-top:1px solid var(--b)}
+</style></head><body>
+<header><div><h1>V91<span>.fragranceOrd</span><small>Katalog parfum + AI</small></h1></div><button id="sy" onclick="tab(5)">● Sinkron: –</button></header>
+<nav id="nav"></nav>
+<main>
+<section id="t0">
+ <div class="card"><h2>Tambah Parfum</h2>
+  <div class="row"><input id="nm" placeholder="Nama parfum (mis. Dior Sauvage EDP)"><select id="ge"></select></div>
+  <input id="no" placeholder="Notes (top, middle, base)">
+  <div id="ck" class="m"></div>
+  <div class="row"><input id="nk" placeholder="+ kategori baru"><button class="btn o" style="flex:0" onclick="addCat()">Tambah</button></div>
+  <button class="btn" onclick="add()">+ Simpan</button><button class="btn o" id="bf" onclick="aiOne()">✨ Isi via AI</button>
+  <a class="btn o" id="gl" target="_blank" rel="noopener" onclick="lk(this,'g')">Google</a><a class="btn o" id="fr" target="_blank" rel="noopener" onclick="lk(this,'f')">Fragrantica</a>
+  <div class="m" id="fm"></div></div>
+ <div class="card"><h2>Katalog <span class="m" id="cnt"></span></h2>
+  <input id="q" placeholder="Cari nama / notes" oninput="rl()">
+  <div class="row"><select id="fg" onchange="rl()"></select><select id="fk" onchange="rl()"></select><select id="fe" onchange="rl()"></select></div>
+  <button class="btn g" onclick="bulk()" id="bb">✨ Lengkapi massal via AI</button><button class="btn o" onclick="frNext()">🌸 Fragrantica berikutnya</button><button class="btn o" onclick="tab(4)">🖨 Cetak</button>
+  <div class="m" id="bm"></div><div id="ls"></div></div>
+</section>
+<section id="t1" class="hide"><div class="card"><h2>Mix 2 Parfum</h2><select id="m1"></select><select id="m2"></select>
+ <button class="btn" onclick="mix()">✨ Analisis Perpaduan</button><div class="out" id="mo"></div></div><div class="card"><h2>Riwayat Mix</h2><div id="mh"></div></div></section>
+<section id="t2" class="hide"><div class="card"><h2>Kategori Produk <span class="m" id="kc"></span></h2>
+ <input id="kq" placeholder="Cari nama / notes / kategori" oninput="kat()">
+ <div class="row"><select id="kf" onchange="kat()"></select><select id="kg" onchange="kat()"></select><select id="ka" onchange="kat()"></select><select id="ks" onchange="kat()"></select></div>
+ <div class="chips" id="kch"></div><div class="m">Semua parfum tersimpan tampil di sini. Ketuk nama parfum untuk melihat detail.</div><div id="kt"></div></div></section>
+<section id="t3" class="hide">
+ <div class="card"><h2>Edukasi &amp; Tanya Parfum</h2><div class="chips" id="ch"></div><div id="cl"></div>
+ <textarea id="ci" rows="2" placeholder="Pertanyaan atau pertanyaan lanjutan..."></textarea><button class="btn" onclick="ask()">Kirim</button><button class="btn o" onclick="newChat()">Chat baru</button></div>
+ <div class="card"><h2>Riwayat <button class="btn o" style="float:right;margin:0" onclick="clrH()">Hapus semua</button></h2><div id="hs"></div></div></section>
+<section id="t4" class="hide"><div class="card"><h2>Cetak PDF</h2>
+ <p class="m">Isi PDF mengikuti pencarian &amp; filter di tab Katalog, plus pilihan di bawah.</p>
+ <h3>Kategori</h3><div id="pk"></div><h3>Kolom</h3><div id="pc"></div>
+ <h3>Orientasi</h3><select id="po"><option value="auto">Otomatis (sesuai jumlah kolom)</option><option value="l">Landscape</option><option value="p">Portrait</option></select>
+ <button class="btn" onclick="pdf('dl')">⬇ Unduh PDF</button><button class="btn g" onclick="pdf('drive')">☁ Simpan PDF ke Drive</button><div class="m" id="pm"></div></div></section>
+<section id="t5" class="hide">
+ <div class="card"><h2>Google Sheets &amp; Drive</h2>
+  <p>📁 Folder: <a href="https://drive.google.com/drive/folders/1zUwfO00skzrLZVtxg273VyLO8QIM7CG7" target="_blank" rel="noopener">Drive › V91.fragranceOrd</a><br>📊 Sheet: <a href="https://docs.google.com/spreadsheets/d/11pcuCJ5O-se6FFJQ_iyxIMzM237n3dyrKddRJGIkBdo/edit" target="_blank" rel="noopener">V91.fragranceOrd - Katalog</a> (tab “Untitled”)<br>📄 PDF tersimpan di folder yang sama.</p>
+  <label class="chk"><input type="checkbox" id="rt" onchange="setRT()"> Sinkron otomatis (realtime saat data berubah)</label><br>
+  <button class="btn" onclick="sync(true)">↻ Sinkron sekarang</button><div class="m" id="sm"></div></div>
+ <div class="card"><h2>Ekspor / Impor / Template</h2><p class="m">Format CSV. Data 1 Katalog · Data 2 Mix · Data 3 Kategori · Data 4 Edukasi. Kategori ganda dipisah “;”.</p><label class="m">Format unduhan:</label><select id="fmt"><option value="csv">CSV</option><option value="xlsx">Excel (.xlsx)</option></select><div id="ei"></div><input type="file" id="fi" accept=".csv,.txt,.xlsx,.xls" class="hide"></div>
+</section>
+</main>
+<script>
+if(typeof claude==="undefined")window.claude={use:async n=>n==="downloads"?{save:async({filename:f,data:d})=>{const a=document.createElement("a");a.href=URL.createObjectURL(d instanceof Blob?d:new Blob([d]));a.download=f;document.body.appendChild(a);a.click();a.remove()}}:null};
+const AR=["Floral","Fruity","Gourmand","Citrus","Aquatic","Woody","Spicy","Oriental"],GE=["Pria","Wanita","Unisex"],SE=["Indoor","Outdoor","Keduanya"];
+const TABS=["Katalog","Mix","Kategori","Edukasi","Cetak","Sinkron & Data"],SID="11pcuCJ5O-se6FFJQ_iyxIMzM237n3dyrKddRJGIkBdo",FID="1zUwfO00skzrLZVtxg273VyLO8QIM7CG7",SH="Untitled";
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const OP=new Set();let D=ld("v91",[]),CATS=ld("v91c",["Wisata Parfum","Planet Parfum"]),MX=ld("v91m",[]),HS=ld("v91h",[]),RT=ld("v91rt",true),cur=null,S=null,M=null,st=null,fi=0;
+function dlg(msg,o={}){return new Promise(res=>{const ok=o.ok||"OK",cn=o.cancel===undefined?"Batal":o.cancel,f=o.fields||[];const v=document.createElement("div");v.className="ov";
+ v.innerHTML=`<div class="dg"><p>${esc(msg)}</p>${f.map((x,i)=>`<input data-i="${i}" placeholder="${esc(x[0])}" value="${esc(x[1])}">`).join("")}<div style="text-align:right">${cn?`<button class="btn o" id="dn">${cn}</button>`:""}<button class="btn" id="dk">${ok}</button></div></div>`;document.body.appendChild(v);
+ const end=r=>{v.remove();res(r)};v.querySelector("#dk").onclick=()=>end(f.length?[...v.querySelectorAll("input")].map(i=>i.value):true);const n=v.querySelector("#dn");if(n)n.onclick=()=>end(false)})}
+const sv=()=>{try{localStorage.setItem("v91",JSON.stringify(D));localStorage.setItem("v91c",JSON.stringify(CATS));localStorage.setItem("v91m",JSON.stringify(MX));localStorage.setItem("v91h",JSON.stringify(HS));localStorage.setItem("v91rt",JSON.stringify(RT))}catch(e){}if(RT)clearTimeout(st),st=setTimeout(()=>sync(),1500)};
+(async()=>{try{S=await claude.use("sample")}catch(e){}try{M=await claude.use("mcp")}catch(e){}ss()})();
+const op=(a,all)=>(all?`<option value="">${all}</option>`:"")+a.map(x=>`<option>${esc(x)}</option>`).join("");
+$("nav").innerHTML=TABS.map((t,i)=>`<button onclick="tab(${i})">${t}</button>`).join("");
+function tab(i){TABS.forEach((_,j)=>{$("t"+j).classList.toggle("hide",i!=j);$("nav").children[j].classList.toggle("on",i==j)});({1:mixSel,2:kat,3:hs,4:pinit,5:ei})[i]?.();}
+function fillSel(){$("ge").innerHTML=op(GE);$("fg").innerHTML=op(GE,"Semua gender");$("fk").innerHTML=op(CATS,"Semua kategori");$("fe").innerHTML=op(AR,"Semua aroma");$("kf").innerHTML=op(CATS,"Semua kategori");$("kg").innerHTML=op(GE,"Semua gender");$("ka").innerHTML=op(AR,"Semua aroma");$("ks").innerHTML=op(SE,"Indoor/Outdoor");
+ $("ck").innerHTML=CATS.map((c,i)=>`<label class="chk"><input type="checkbox" class="nk" value="${esc(c)}">${esc(c)}</label>`).join("")}
+function addCat(){const v=$("nk").value.trim();if(v&&!CATS.includes(v)){CATS.push(v);sv();const ch=[...document.querySelectorAll(".nk:checked")].map(x=>x.value);fillSel();document.querySelectorAll(".nk").forEach(x=>x.checked=ch.includes(x.value)||x.value==v)}$("nk").value=""}
+async function addK(id,v){if(!v)return rl();const p=D.find(x=>x.id==id);if(v=="__new"){const r=await dlg("Nama kategori baru",{ok:"Tambah",fields:[["Nama kategori",""]]});v=r&&r[0].trim();if(!v)return rl();if(!CATS.includes(v)){const keep=[$("fg").value,$("fk").value,$("fe").value];CATS.push(v);fillSel();$("fg").value=keep[0];$("fk").value=keep[1];$("fe").value=keep[2]}}
+ if(!p.kat.includes(v))p.kat.push(v);sv();rl();kat()}
+function rmK(id,i){const p=D.find(x=>x.id==id),c=CATS[i];p.kat=p.kat.filter(x=>x!=c);sv();rl();kat()}
+function lk(el,w){const q=encodeURIComponent($("nm").value.trim()+(w=="g"?" perfume notes":""));el.href=w=="g"?"https://www.google.com/search?q="+q:"https://www.fragrantica.com/search/?query="+q}
+async function add(){const nama=$("nm").value.trim();if(!nama)return $("fm").textContent="Isi nama parfum.";
+ const dup=D.find(p=>p.nama.toLowerCase().replace(/\s+/g," ")==nama.toLowerCase().replace(/\s+/g," "));
+ if(dup&&!await dlg(`"${dup.nama}" sudah ada di katalog. Tetap simpan sebagai produk baru?`,{ok:"Tetap simpan",cancel:"Batalkan"}))return $("fm").textContent="Dibatalkan.";
+ D.unshift({id:Date.now(),nama,notes:$("no").value.trim(),gender:$("ge").value,aroma:"",setting:"",kat:[...document.querySelectorAll(".nk:checked")].map(x=>x.value)});sv();$("nm").value=$("no").value="";document.querySelectorAll(".nk").forEach(x=>x.checked=false);$("fm").textContent="Tersimpan ✓";rl()}
+async function del(id){const p=D.find(x=>x.id==id);if(await dlg(`Hapus "${p?p.nama:""}" dari katalog?`,{ok:"Hapus"})){D=D.filter(x=>x.id!=id);sv();rl();kat()}}
+function flt(){const q=$("q").value.toLowerCase();return D.filter(p=>(!q||(p.nama+" "+p.notes).toLowerCase().includes(q))&&(!$("fg").value||p.gender==$("fg").value)&&(!$("fk").value||p.kat.includes($("fk").value))&&(!$("fe").value||p.aroma==$("fe").value))}
+function rl(){const L=flt();$("cnt").textContent=`(${L.length}/${D.length})`;
+ $("ls").innerHTML=L.map(p=>`<div class="it"><div><b>${esc(p.nama)}</b><div class="m">${esc(p.notes)||"<i>notes kosong</i>"}</div><span class="tag">${p.gender}</span>${p.aroma?`<span class="tag">${p.aroma}</span>`:""}${p.setting?`<span class="tag">${p.setting}</span>`:""}${p.kat.map(k=>`<span class="tag k">${esc(k)} <a onclick="rmK(${p.id},${CATS.indexOf(k)})" style="cursor:pointer">✕</a></span>`).join("")}<div style="margin-top:6px"><select style="width:auto;max-width:100%;margin:0;padding:4px 8px;font-size:12px" onchange="addK(${p.id},this.value)"><option value="">+ Tambah kategori</option>${CATS.filter(c=>!p.kat.includes(c)).map((c,i)=>`<option>${esc(c)}</option>`).join("")}<option value="__new">＋ Kategori baru...</option></select></div></div><div><a class="btn o" target="_blank" rel="noopener" href="https://www.fragrantica.com/search/?query=${encodeURIComponent(p.nama)}">🌸</a><button class="btn o" onclick="del(${p.id})">🗑</button></div></div>`).join("")||'<div class="m">Belum ada data.</div>'}
+const J=async(p)=>S.json(p);
+async function aiOne(){const n=$("nm").value.trim();if(!S||!n)return $("fm").textContent=S?"Isi nama dulu.":"AI tidak tersedia.";$("bf").disabled=true;$("fm").textContent="AI mencari...";
+ try{const r=await J(`Parfum: ${n}. JSON saja: {"notes":"top: ..., middle: ..., base: ...","gender":"Pria|Wanita|Unisex"}. Kosongkan notes jika tidak yakin.`);if(r.notes)$("no").value=r.notes;if(GE.includes(r.gender))$("ge").value=r.gender;$("fm").textContent="Terisi — verifikasi di Fragrantica."}catch(e){$("fm").textContent="Gagal: "+(e.code||e.message)}$("bf").disabled=false}
+async function bulk(){if(!S)return $("bm").textContent="AI tidak tersedia.";const T=D.filter(p=>!p.notes||!p.aroma);if(!T.length)return $("bm").textContent="Semua data sudah lengkap.";$("bb").disabled=true;
+ for(let i=0;i<T.length;i+=8){const B=T.slice(i,i+8);$("bm").textContent=`AI memproses ${Math.min(i+8,T.length)}/${T.length}...`;
+  try{const r=await J(`Lengkapi data parfum berikut sepengetahuanmu. Daftar: ${JSON.stringify(B.map(p=>p.nama))}. JSON array saja, satu objek per parfum, urut sama: [{"notes":"top: ..., middle: ..., base: ...","gender":"Pria|Wanita|Unisex","aroma":"${AR.join("|")}","setting":"Indoor|Outdoor|Keduanya"}]. notes "" jika tidak yakin.`);
+   B.forEach((p,j)=>{const x=r[j];if(!x)return;if(!p.notes&&x.notes)p.notes=x.notes;if(GE.includes(x.gender)&&p.gender=="Unisex")p.gender=x.gender;if(AR.includes(x.aroma))p.aroma=x.aroma;if(SE.includes(x.setting))p.setting=x.setting});sv();rl()}catch(e){$("bm").textContent="Berhenti: "+(e.code||e.message);$("bb").disabled=false;return}}
+ $("bm").textContent="Selesai ✓ (hasil AI — verifikasi di Fragrantica)";$("bb").disabled=false}
+function frNext(){const T=D.filter(p=>!p.notes);if(!T.length)return $("bm").textContent="Semua notes sudah terisi.";const p=T[fi++%T.length];$("bm").textContent=`Fragrantica: ${p.nama} (${T.length} belum ber-notes). Salin notes lalu isi manual.`;window.open("https://www.fragrantica.com/search/?query="+encodeURIComponent(p.nama),"_blank","noopener")}
+function mixSel(){const o=D.map(p=>`<option value="${p.id}">${esc(p.nama)}</option>`).join("");$("m1").innerHTML=o;$("m2").innerHTML=o;if(D.length>1)$("m2").selectedIndex=1;
+ $("mh").innerHTML=MX.map((x,i)=>`<div class="it"><div><b>${esc(x.a)} + ${esc(x.b)}</b><div class="m">${x.d}</div><div class="out m" style="max-height:60px;overflow:hidden">${esc(x.t)}</div></div><button class="btn o" onclick="MX.splice(${i},1);sv();mixSel()">🗑</button></div>`).join("")||'<div class="m">Belum ada.</div>'}
+async function mix(){const a=D.find(p=>p.id==$("m1").value),b=D.find(p=>p.id==$("m2").value),o=$("mo");if(!a||!b||a.id==b.id)return o.textContent="Pilih 2 parfum berbeda.";if(!S)return o.textContent="AI tidak tersedia.";o.textContent="Menganalisis...";
+ try{const r=await S(`Ahli parfum. Layering:\nA: ${a.nama} | ${a.notes} | ${a.aroma} ${a.gender}\nB: ${b.nama} | ${b.notes} | ${b.aroma} ${b.gender}\nBahasa Indonesia ringkas:\n1) Rasio ideal (A xx% : B xx%) + alasan\n2) Karakter hasil\n3) Skor /10\n4) Cocok untuk acara/cuaca/indoor-outdoor\n5) Tips semprot`,{onText:({text})=>o.textContent=text,cache:false});o.textContent=r.text;MX.unshift({a:a.nama,b:b.nama,t:r.text,d:new Date().toLocaleString("id-ID")});MX=MX.slice(0,30);sv();mixSel()}catch(e){o.textContent="Gagal: "+(e.code||e.message)}}
+function kat(){const q=$("kq").value.toLowerCase(),k=$("kf").value;
+ const L=D.filter(p=>(!k||p.kat.includes(k))&&(!$("kg").value||p.gender==$("kg").value)&&(!$("ka").value||p.aroma==$("ka").value)&&(!$("ks").value||p.setting==$("ks").value)&&(!q||(p.nama+" "+p.notes+" "+p.kat.join(" ")).toLowerCase().includes(q)));
+ $("kc").textContent=`(${L.length}/${D.length})`;
+ $("kch").innerHTML=CATS.map((c,i)=>`<button onclick="$('kf').value=CATS[${i}];kat()">${esc(c)} (${D.filter(p=>p.kat.includes(c)).length})</button>`).join("");
+ $("kt").innerHTML=L.map(p=>OP.has(p.id)?`<div class="tbl" style="grid-template-columns:1fr"><div onclick="tgo(${p.id})" style="cursor:pointer"><b>▾ ${esc(p.nama)}</b><div class="m">${esc(p.notes)||"<i>notes kosong</i>"}</div><span class="tag">${p.gender}</span>${p.aroma?`<span class="tag">${p.aroma}</span>`:""}${p.setting?`<span class="tag">${p.setting}</span>`:""}${p.kat.map(k=>`<span class="tag k">${esc(k)}</span>`).join("")}</div><div class="row"><select onchange="up(${p.id},'gender',this.value)">${GE.map(x=>`<option ${x==p.gender?"selected":""}>${x}</option>`).join("")}</select><select onchange="up(${p.id},'aroma',this.value)"><option value="">Aroma</option>${AR.map(x=>`<option ${x==p.aroma?"selected":""}>${x}</option>`).join("")}</select><select onchange="up(${p.id},'setting',this.value)"><option value="">Indoor/Outdoor</option>${SE.map(x=>`<option ${x==p.setting?"selected":""}>${x}</option>`).join("")}</select></div><div>${CATS.map((c,i)=>`<label class="chk"><input type="checkbox" ${p.kat.includes(c)?"checked":""} onchange="tg(${p.id},${i},this.checked)">${esc(c)}</label>`).join("")}</div></div>`:`<div class="tbl" onclick="tgo(${p.id})" style="cursor:pointer"><b>▸ ${esc(p.nama)}</b><span class="m">detail</span></div>`).join("")||'<div class="m">Tidak ada parfum yang cocok.</div>'}
+function tgo(id){OP.has(id)?OP.delete(id):OP.add(id);kat()}
+function up(id,k,v){D.find(p=>p.id==id)[k]=v;sv();rl()}
+function tg(id,i,on){const p=D.find(p=>p.id==id),c=CATS[i];p.kat=p.kat.filter(x=>x!=c);if(on)p.kat.push(c);sv();rl();kat()}
+async function edt(id){const p=D.find(p=>p.id==id),r=await dlg("Ubah parfum",{ok:"Simpan",fields:[["Nama parfum",p.nama],["Notes",p.notes]]});if(!r)return;if(r[0].trim())p.nama=r[0].trim();p.notes=r[1].trim();sv();rl();kat()}
+async function delCat(i){const c=CATS[i];if(!await dlg(`Hapus kategori "${c}"? Parfum tidak ikut terhapus.`,{ok:"Hapus"}))return;CATS.splice(i,1);D.forEach(p=>p.kat=p.kat.filter(x=>x!=c));if($("kf").value==c)$("kf").value="";sv();fillSel();rl();kat()}
+const TOP=["Cara pakai parfum agar awet","Memahami top/middle/base notes","Beda EDT, EDP, Parfum","Tips layani pelanggan parfum","Menangani komplain & alergi","Bisnis parfum refill: SOP & tips","Ide campaign promo","Ide konten Instagram/TikTok"];
+$("ch").innerHTML=TOP.map((t,i)=>`<button onclick="ask(TOP[${i}])">${t}</button>`).join("");
+function drawChat(){$("cl").innerHTML=cur?cur.m.map(x=>`<div class="msg ${x.role=="user"?"u":"a"}">${esc(x.content)}</div>`).join(""):""}
+function newChat(){cur=null;drawChat();$("ci").value=""}
+async function ask(q){q=q||$("ci").value.trim();if(!q)return;if(!S)return dlg("AI tidak tersedia.",{cancel:null});$("ci").value="";
+ if(!cur){cur={id:Date.now(),title:q.slice(0,60),m:[]};HS.unshift(cur)}cur.m.push({role:"user",content:q});cur.m.push({role:"assistant",content:"..."});drawChat();
+ const sys=`Konsultan parfum V91.fragranceOrd: edukasi notes, kualitas, konsentrasi, cara pakai & simpan, penanganan pelanggan, pelayanan sales, bisnis refill (bibit, takaran, SOP higienis, jujur soal klaim "inspired by"), ide campaign promo & konten. Bahasa Indonesia, praktis, ringkas. Katalog user: ${D.slice(0,25).map(p=>p.nama).join("; ")||"kosong"}.`;
+ const h=cur.m.slice(0,-1);try{const r=await S([{role:"user",content:sys},{role:"assistant",content:"Siap."},...h],{onText:({text})=>{cur.m[cur.m.length-1].content=text;drawChat()},cache:false});cur.m[cur.m.length-1].content=r.text}catch(e){cur.m[cur.m.length-1].content="Gagal: "+(e.code||e.message)}sv();drawChat();hs()}
+function hs(){$("hs").innerHTML=HS.map((h,i)=>`<div class="it"><div onclick="cur=HS[${i}];drawChat();scrollTo(0,0)" style="cursor:pointer"><b>${esc(h.title)}</b><div class="m">${h.m.length/2|0} tanya-jawab · ketuk untuk buka</div></div><button class="btn o" onclick="if(cur==HS[${i}])newChat();HS.splice(${i},1);sv();hs()">🗑</button></div>`).join("")||'<div class="m">Belum ada riwayat.</div>'}
+async function clrH(){if(await dlg("Hapus semua riwayat?",{ok:"Hapus"})){HS=[];newChat();sv();hs()}}
+const PC=[["nama","Nama Parfum"],["notes","Notes"],["gender","Gender"],["aroma","Aroma"],["setting","Indoor/Outdoor"],["kat","Kategori"]];
+function pinit(){$("pk").innerHTML=CATS.map(c=>`<label class="chk"><input type="checkbox" class="pk" value="${esc(c)}">${esc(c)}</label>`).join("")+'<div class="m">Kosong = semua kategori</div>';$("pc").innerHTML=PC.map(([k,l])=>`<label class="chk"><input type="checkbox" class="pc" value="${k}" checked>${l}</label>`).join("")}
+async function pdf(mode){const pm=$("pm"),ks=[...document.querySelectorAll(".pk:checked")].map(x=>x.value),cs=[...document.querySelectorAll(".pc:checked")].map(x=>x.value);
+ let L=flt().filter(p=>!ks.length||ks.some(k=>p.kat.includes(k)));if(!L.length)return pm.textContent="Tidak ada data.";if(!cs.length)return pm.textContent="Pilih minimal 1 kolom.";if(!window.jspdf)return pm.textContent="Library PDF belum termuat.";
+ const o=$("po").value,land=o=="l"||(o=="auto"&&cs.length>3),doc=new jspdf.jsPDF({orientation:land?"landscape":"portrait",unit:"pt",format:"a4"}),W=doc.internal.pageSize.getWidth();
+ doc.setFillColor(31,45,77);doc.rect(0,0,W,56,"F");doc.setTextColor(255);doc.setFontSize(17);doc.text("V91.fragranceOrd — Katalog Parfum",32,34);
+ doc.setTextColor(90);doc.setFontSize(9);doc.text(`Kategori: ${ks.join(", ")||"Semua"} | Filter: ${[$("fg").value,$("fe").value,$("q").value].filter(Boolean).join(", ")||"-"} | ${L.length} produk | ${new Date().toLocaleDateString("id-ID")}`,32,74);
+ const lb=Object.fromEntries(PC),cw={nama:{cellWidth:"auto",fontStyle:"bold"},notes:{cellWidth:land?250:150}};
+ doc.autoTable({startY:84,head:[["No",...cs.map(c=>lb[c])]],body:L.map((p,i)=>[i+1,...cs.map(c=>c=="kat"?p.kat.join(", "):p[c]||"-")]),styles:{fontSize:9,cellPadding:5,overflow:"linebreak"},headStyles:{fillColor:[31,45,77],textColor:255},alternateRowStyles:{fillColor:[244,245,248]},columnStyles:Object.fromEntries(cs.map((c,i)=>[i+1,cw[c]||{}])),margin:{left:32,right:32},didDrawPage:d=>{doc.setFontSize(8);doc.setTextColor(120);doc.text("Halaman "+doc.internal.getNumberOfPages(),W-70,doc.internal.pageSize.getHeight()-16)}});
+ const fn=`V91-fragranceOrd-${new Date().toISOString().slice(0,10)}.pdf`;
+ if(mode=="dl"){try{const d=await claude.use("downloads");await d.save({filename:fn,data:doc.output("arraybuffer")});pm.textContent="PDF diunduh ✓"}catch(e){pm.textContent="Unduh batal/gagal: "+(e.code||e.message)}}
+ else{if(!M)return pm.textContent="Konektor Google Drive belum diizinkan.";try{const r=await M.callTool("Google Drive","create_file",{title:fn,parentId:FID,base64Content:doc.output("datauristring").split(",")[1],contentMimeType:"application/pdf",disableConversionToGoogleType:true});pm.innerHTML="Tersimpan di Drive › V91.fragranceOrd ✓ "+(r.payload?.viewUrl?`<a href="${r.payload.viewUrl}" target="_blank" rel="noopener">buka</a>`:"")}catch(e){pm.textContent="Gagal ke Drive: "+(e.code||e.message)}}}
+let syncing=false,lastSync=null;
+function ss(t){const b=$("sy");b.textContent=t||(!M?"● Sinkron: tidak aktif":RT?"● Realtime aktif":"● Manual");$("rt").checked=RT}
+async function sync(man){const sm=$("sm");if(!M){sm.textContent="Izin konektor Google belum diberikan / tidak tersedia.";return}if(syncing)return;syncing=true;ss("↻ Menyinkron...");
+ try{const v=[["ID","Nama Parfum","Notes","Gender","Aroma","Indoor/Outdoor","Kategori"],...D.map(p=>[String(p.id),p.nama,p.notes,p.gender,p.aroma||"",p.setting||"",p.kat.join("; ")])];
+  await M.callTool("Google Sheets","batch_clear_values",{spreadsheetId:SID,ranges:[`${SH}!A1:G5000`]});
+  await M.callTool("Google Sheets","update_values",{spreadsheetId:SID,range:`${SH}!A1:G${v.length}`,values:v});lastSync=new Date().toLocaleTimeString("id-ID");sm.textContent=`Terakhir sinkron ${lastSync} — ${D.length} baris ke Google Sheets.`;ss()}
+ catch(e){sm.textContent="Gagal sinkron: "+(e.code||e.message);ss("● Sinkron gagal")}syncing=false}
+function setRT(){RT=$("rt").checked;sv();ss();if(RT)sync()}
+const CSVH={1:["Nama Parfum","Notes","Gender","Kategori"],2:["Parfum A","Parfum B","Hasil Analisis","Tanggal"],3:["Nama Parfum","Gender","Aroma","Indoor/Outdoor","Kategori"],4:["Topik","Pertanyaan","Jawaban"]};
+const csv=r=>r.map(x=>x.map(c=>`"${String(c??"").replace(/"/g,'""')}"`).join(",")).join("\r\n");
+function parse(t){const R=[];let r=[],c="",q=false;t=t.replace(/^\uFEFF/,"");for(let i=0;i<t.length;i++){const ch=t[i];if(q){if(ch=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=ch}else if(ch=='"')q=true;else if(ch==","||ch==";"&&false){r.push(c);c=""}else if(ch=="\n"||ch=="\r"){if(ch=="\r"&&t[i+1]=="\n")i++;r.push(c);c="";if(r.some(x=>x))R.push(r);r=[]}else c+=ch}if(c||r.length){r.push(c);R.push(r)}return R}
+function rows(n){if(n==1)return D.map(p=>[p.nama,p.notes,p.gender,p.kat.join("; ")]);if(n==2)return MX.map(x=>[x.a,x.b,x.t,x.d]);if(n==3)return D.map(p=>[p.nama,p.gender,p.aroma,p.setting,p.kat.join("; ")]);return HS.flatMap(h=>{const o=[];for(let i=0;i+1<h.m.length;i+=2)o.push([h.title,h.m[i].content,h.m[i+1].content]);return o})}
+const LBL={1:"Data 1 Katalog",2:"Data 2 Mix",3:"Data 3 Kategori",4:"Data 4 Edukasi"};
+function ei(){$("ei").innerHTML=[1,2,3,4].map(n=>`<div class="tbl"><b>${LBL[n]}</b><div><button class="btn o" onclick="dl(${n},1)">Template</button><button class="btn o" onclick="dl(${n},0)">Ekspor</button><button class="btn" onclick="imp(${n})">Impor</button></div></div>`).join("")}
+const EX={1:["Dior Sauvage EDP","top: bergamot; base: ambroxan","Pria","Wisata Parfum; Planet Parfum"],2:["Parfum A","Parfum B","Rasio 60:40, skor 8/10","2026-01-01"],3:["Dior Sauvage EDP","Pria","Spicy","Outdoor","Wisata Parfum"],4:["Refill","Bagaimana SOP refill?","Jawaban..."]};
+async function dl(n,t){const R=[CSVH[n],...(t?[EX[n]]:rows(n))],nm=`V91-${t?"template-":""}data${n}`;try{const d=await claude.use("downloads");
+ if($("fmt").value=="xlsx"){const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(R),LBL[n]);await d.save({filename:nm+".xlsx",data:XLSX.write(wb,{type:"array",bookType:"xlsx"})})}
+ else await d.save({filename:nm+".csv",data:"\uFEFF"+csv(R)});$("sm").textContent="File disiapkan ✓"}catch(e){$("sm").textContent="Unduh gagal: "+(e.code||e.message)}}
+function imp(n){const f=$("fi");f.value="";f.onchange=async()=>{const fl=f.files[0];if(!fl)return;const R=(/\.xls/i.test(fl.name)?XLSX.utils.sheet_to_json(XLSX.read(await fl.arrayBuffer()).Sheets[XLSX.read(await fl.arrayBuffer()).SheetNames[0]],{header:1,defval:""}).map(r=>r.map(x=>String(x))):parse(await fl.text())).slice(1);let c=0;
+ R.forEach(r=>{if(n==1||n==3){const nama=(r[0]||"").trim();if(!nama)return;const kk=(n==1?r[3]:r[4]||"").split(/[;|]/).map(s=>s.trim()).filter(Boolean);kk.forEach(k=>{if(!CATS.includes(k))CATS.push(k)});let p=D.find(x=>x.nama.toLowerCase()==nama.toLowerCase());if(!p){p={id:Date.now()+c,nama,notes:"",gender:"Unisex",aroma:"",setting:"",kat:[]};D.push(p)}
+  if(n==1){if(r[1])p.notes=r[1];if(GE.includes(r[2]))p.gender=r[2]}else{if(GE.includes(r[1]))p.gender=r[1];if(AR.includes(r[2]))p.aroma=r[2];if(SE.includes(r[3]))p.setting=r[3]}kk.forEach(k=>{if(!p.kat.includes(k))p.kat.push(k)});c++}
+  else if(n==2&&r[0]){MX.push({a:r[0],b:r[1],t:r[2],d:r[3]});c++}else if(n==4&&r[1]){let h=HS.find(x=>x.title==r[0]);if(!h){h={id:Date.now()+c,title:r[0],m:[]};HS.push(h)}h.m.push({role:"user",content:r[1]},{role:"assistant",content:r[2]});c++}});
+ sv();fillSel();rl();$("sm").textContent=`Impor ${LBL[n]}: ${c} baris ✓`};f.click()}
+const OLD=D.filter(p=>!p||p.nama===undefined||p.brand!==undefined||!Array.isArray(p.kat)||p.notes===undefined).length;D=D.filter(Boolean).map((p,i)=>({id:p.id||Date.now()+i,nama:p.nama||[p.brand,p.varian].filter(Boolean).join(" ")||"(tanpa nama)",notes:p.notes||"",gender:GE.includes(p.gender)?p.gender:"Unisex",aroma:p.aroma||"",setting:p.setting||"",kat:Array.isArray(p.kat)?p.kat:[]}));
+try{localStorage.setItem("v91",JSON.stringify(D))}catch(e){}
+fillSel();rl();tab(0);if(OLD)$("fm").textContent=`${OLD} data lama sudah dikonversi ke format baru ✓`;
+</script></body></html>
