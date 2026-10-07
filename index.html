@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1f2d4d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="V91 Fragrance"><title>V91.fragranceOrd</title>
+<meta name="theme-color" content="#1f2d4d"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="V91 Fragrance"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><title>V91.fragranceOrd</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -184,4 +184,4 @@ function imp(n){if(ROLE!="admin")return;const f=$("fi");f.value="";f.onchange=as
 const OLD=D.filter(p=>!p||p.nama===undefined||p.brand!==undefined||!Array.isArray(p.kat)||p.notes===undefined).length;D=D.filter(Boolean).map((p,i)=>({id:p.id||Date.now()+i,nama:p.nama||[p.brand,p.varian].filter(Boolean).join(" ")||"(tanpa nama)",notes:p.notes||"",gender:GE.includes(p.gender)?p.gender:"Unisex",aroma:p.aroma||"",setting:p.setting||"",kat:Array.isArray(p.kat)?p.kat:[]}));
 try{localStorage.setItem("v91",JSON.stringify(D))}catch(e){}
 fillSel();rl();renderRole();tab(ROLE=="admin"?0:2);if(OLD&&ROLE=="admin")$("fm").textContent=`${OLD} data lama sudah dikonversi ke format baru ✓`;
-</script></body></html>
+</script><script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script></body></html>
